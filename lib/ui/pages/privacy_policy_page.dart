@@ -22,9 +22,9 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    final double statusBarHeight = MediaQuery.of(context).padding.top;
-    final double navBarHeight = kToolbarHeight;
-    final double webViewHeight = screenSize.height - navBarHeight;
+    final double safeAreaTop = MediaQuery.of(context).padding.top;
+    final double topPadding = safeAreaTop + 64;
+    final double webViewTop = topPadding;
 
     return Scaffold(
       backgroundColor: const Color(0xFF1A0138),
@@ -39,7 +39,24 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
             ),
           ),
           Positioned(
-            top: statusBarHeight,
+            top: webViewTop,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              width: screenSize.width,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: WebViewWidget(controller: _webViewController),
+            ),
+          ),
+          Positioned(
+            top: safeAreaTop,
             left: 16,
             child: GestureDetector(
               onTap: () {
@@ -55,23 +72,6 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
                   fit: BoxFit.contain,
                 ),
               ),
-            ),
-          ),
-          Positioned(
-            top: navBarHeight,
-            left: 0,
-            right: 0,
-            child: Container(
-              width: screenSize.width,
-              height: webViewHeight,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-              ),
-              clipBehavior: Clip.antiAlias,
-              child: WebViewWidget(controller: _webViewController),
             ),
           ),
         ],

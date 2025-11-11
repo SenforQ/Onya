@@ -5,7 +5,7 @@ class VipSubscriptionService {
     return const <VipSubscription>[
       VipSubscription(
         id: 'weekly',
-        productId: 'Subsweete3_29',
+        productId: 'OnyaWeekVIP',
         price: 12.99,
         currency: '\$',
         subtitle: 'Weekly Subscription',
@@ -13,7 +13,7 @@ class VipSubscriptionService {
       ),
       VipSubscription(
         id: 'monthly',
-        productId: 'Subsweete3_29',
+        productId: 'OnyaMonthVIP',
         price: 49.99,
         currency: '\$',
         subtitle: 'Monthly Subscription',

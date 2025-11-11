@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'ui/floating_tab_scaffold.dart';
+import 'ui/pages/welcome_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF7B24FF)),
       ),
-      home: const FloatingTabScaffold(),
+      home: const WelcomePage(),
     );
   }
 }

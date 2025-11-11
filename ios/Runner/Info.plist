@@ -26,10 +26,19 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to microphone for audio recording</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>We need access to save photos to your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to your photo library to set your profile picture.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This app would like to track you across apps and websites to provide personalized content and ads.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
