@@ -1,0 +1,304 @@
+[
+  {
+    "OnyaFigureName": "Alex",
+    "OnyaUserIcon": "assets/figure/1/figure_1_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/1/figure_1_img_1.webp",
+      "assets/figure/1/figure_1_img_2.webp",
+      "assets/figure/1/figure_1_img_3.webp",
+      "assets/figure/1/figure_1_img_4.webp"
+    ],
+    "OnyaShowMotto": "I'm a storyteller who loves bringing characters to life through voice acting. Every story is an adventure waiting to be told, and I'm here to make it magical.",
+    "OnyaShowFollowNum": 7,
+    "OnyaShowLike": 12,
+    "OnyaShowSayhi": "Hey there! I'm Alex, your friendly neighborhood voice actor. Ready to dive into some amazing stories together? Let's create something unforgettable!",
+    "OnyaLikeMusicStyleArray": ["Pop", "Electronic", "Indie"]
+  },
+  {
+    "OnyaFigureName": "Blake",
+    "OnyaUserIcon": "assets/figure/2/figure_2_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/2/figure_2_img_1.webp",
+      "assets/figure/2/figure_2_img_2.webp",
+      "assets/figure/2/figure_2_img_3.webp",
+      "assets/figure/2/figure_2_img_4.webp",
+      "assets/figure/2/figure_2_img_5.webp"
+    ],
+    "OnyaShowMotto": "A narrator crafting intricate tales with precision. I find beauty in complex narratives and enjoy sharing stories that challenge the mind through voice acting.",
+    "OnyaShowFollowNum": 5,
+    "OnyaShowLike": 9,
+    "OnyaShowSayhi": "Hello! I'm Blake, a storyteller who loves deep narratives. Want to explore thought-provoking stories? I'm here to guide you through fascinating tales.",
+    "OnyaLikeMusicStyleArray": ["Classical", "Jazz", "Ambient"]
+  },
+  {
+    "OnyaFigureName": "Chris",
+    "OnyaUserIcon": "assets/figure/3/figure_3_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/3/figure_3_img_1.webp",
+      "assets/figure/3/figure_3_img_2.webp",
+      "assets/figure/3/figure_3_img_3.webp",
+      "assets/figure/3/figure_3_img_4.webp"
+    ],
+    "OnyaShowMotto": "A voice artist passionate about bringing energy to every story. Life's too short for boring tales - let's make them vibrant and exciting through storytelling!",
+    "OnyaShowFollowNum": 9,
+    "OnyaShowLike": 14,
+    "OnyaShowSayhi": "Hi! I'm Chris, and I bring stories to life with enthusiasm! Ready for some fun adventures? Let's make today's story absolutely amazing together!",
+    "OnyaLikeMusicStyleArray": ["Pop", "Rock", "Dance"]
+  },
+  {
+    "OnyaFigureName": "Drew",
+    "OnyaUserIcon": "assets/figure/4/figure_4_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/4/figure_4_img_1.webp",
+      "assets/figure/4/figure_4_img_2.webp",
+      "assets/figure/4/figure_4_img_3.webp",
+      "assets/figure/4/figure_4_img_4.webp"
+    ],
+    "OnyaShowMotto": "A narrator who values structure and clarity in storytelling. I enjoy sharing well-organized tales that make sense and inspire others through voice narration.",
+    "OnyaShowFollowNum": 4,
+    "OnyaShowLike": 7,
+    "OnyaShowSayhi": "Greetings! I'm Drew, a methodical storyteller. I love sharing clear, well-structured narratives. Ready to explore some organized adventures?",
+    "OnyaLikeMusicStyleArray": ["Classical", "Folk", "Country"]
+  },
+  {
+    "OnyaFigureName": "Evan",
+    "OnyaUserIcon": "assets/figure/5/figure_5_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/5/figure_5_img_1.webp",
+      "assets/figure/5/figure_5_img_2.webp",
+      "assets/figure/5/figure_5_img_3.webp",
+      "assets/figure/5/figure_5_img_4.webp"
+    ],
+    "OnyaShowMotto": "A voice actor dedicated to connecting with audiences through meaningful stories. Every tale is an opportunity to inspire and touch hearts through storytelling.",
+    "OnyaShowFollowNum": 8,
+    "OnyaShowLike": 13,
+    "OnyaShowSayhi": "Hello friend! I'm Evan, passionate about stories that matter. Let's share something meaningful today. What story would you like to explore together?",
+    "OnyaLikeMusicStyleArray": ["Soul", "R&B", "Pop"]
+  },
+  {
+    "OnyaFigureName": "Finn",
+    "OnyaUserIcon": "assets/figure/6/figure_6_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/6/figure_6_img_1.webp",
+      "assets/figure/6/figure_6_img_2.webp",
+      "assets/figure/6/figure_6_img_3.webp",
+      "assets/figure/6/figure_6_img_4.webp"
+    ],
+    "OnyaShowMotto": "A storyteller who finds magic in emotional narratives. I love exploring deep feelings and creating stories that resonate with the soul through voice acting.",
+    "OnyaShowFollowNum": 6,
+    "OnyaShowLike": 11,
+    "OnyaShowSayhi": "Hey! I'm Finn, a dreamer who loves emotional stories. Ready to dive into something heartfelt? Let's explore beautiful narratives together!",
+    "OnyaLikeMusicStyleArray": ["Indie", "Folk", "Acoustic"]
+  },
+  {
+    "OnyaFigureName": "Gray",
+    "OnyaUserIcon": "assets/figure/7/figure_7_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/7/figure_7_img_1.webp",
+      "assets/figure/7/figure_7_img_2.webp",
+      "assets/figure/7/figure_7_img_3.webp",
+      "assets/figure/7/figure_7_img_4.webp"
+    ],
+    "OnyaShowMotto": "A narrator bringing action and excitement to every story. Life's an adventure, and I'm here to make every tale thrilling and dynamic through voice narration!",
+    "OnyaShowFollowNum": 10,
+    "OnyaShowLike": 15,
+    "OnyaShowSayhi": "What's up! I'm Gray, and I bring energy to stories! Ready for some action-packed adventures? Let's make this story absolutely epic!",
+    "OnyaLikeMusicStyleArray": ["Rock", "Hip-Hop", "Electronic"]
+  },
+  {
+    "OnyaFigureName": "Hayden",
+    "OnyaUserIcon": "assets/figure/8/figure_8_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/8/figure_8_img_1.webp",
+      "assets/figure/8/figure_8_img_2.webp",
+      "assets/figure/8/figure_8_img_3.webp",
+      "assets/figure/8/figure_8_img_4.webp"
+    ],
+    "OnyaShowMotto": "A voice artist who cherishes tradition and heartfelt stories. I enjoy sharing tales that honor values and connect people through shared experiences and narration.",
+    "OnyaShowFollowNum": 3,
+    "OnyaShowLike": 6,
+    "OnyaShowSayhi": "Hi there! I'm Hayden, a storyteller who loves meaningful connections. Want to hear a warm, heartfelt story? Let's share something special today.",
+    "OnyaLikeMusicStyleArray": ["Country", "Folk", "Soft Rock"]
+  },
+  {
+    "OnyaFigureName": "Ivan",
+    "OnyaUserIcon": "assets/figure/9/figure_9_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/9/figure_9_img_1.webp",
+      "assets/figure/9/figure_9_img_2.webp",
+      "assets/figure/9/figure_9_img_3.webp"
+    ],
+    "OnyaShowMotto": "A narrator who loves creative and unconventional stories. I thrive on innovation and enjoy sharing unique perspectives that challenge norms through voice acting.",
+    "OnyaShowFollowNum": 7,
+    "OnyaShowLike": 12,
+    "OnyaShowSayhi": "Hey! I'm Ivan, a creative storyteller who loves unique ideas. Ready for something different? Let's explore innovative narratives together!",
+    "OnyaLikeMusicStyleArray": ["Electronic", "Experimental", "Indie"]
+  },
+  {
+    "OnyaFigureName": "Jace",
+    "OnyaUserIcon": "assets/figure/10/figure_10_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/10/figure_10_img_1.webp",
+      "assets/figure/10/figure_10_img_2.webp",
+      "assets/figure/10/figure_10_img_3.webp",
+      "assets/figure/10/figure_10_img_4.webp"
+    ],
+    "OnyaShowMotto": "A voice actor who brings practical realism to stories. I enjoy narratives grounded in reality, focusing on action and logical problem-solving through storytelling.",
+    "OnyaShowFollowNum": 5,
+    "OnyaShowLike": 8,
+    "OnyaShowSayhi": "Hello! I'm Jace, a practical storyteller. I love realistic adventures and logical tales. Ready to explore some grounded stories together?",
+    "OnyaLikeMusicStyleArray": ["Rock", "Metal", "Alternative"]
+  },
+  {
+    "OnyaFigureName": "Kai",
+    "OnyaUserIcon": "assets/figure/11/figure_11_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/11/figure_11_img_1.webp",
+      "assets/figure/11/figure_11_img_2.webp",
+      "assets/figure/11/figure_11_img_3.webp",
+      "assets/figure/11/figure_11_img_4.webp"
+    ],
+    "OnyaShowMotto": "A narrator passionate about community and connection through stories. I love sharing tales that bring people together and celebrate relationships via voice narration.",
+    "OnyaShowFollowNum": 8,
+    "OnyaShowLike": 14,
+    "OnyaShowSayhi": "Hi friend! I'm Kai, and I love stories that connect us. Ready to share something wonderful? Let's explore narratives that bring people together!",
+    "OnyaLikeMusicStyleArray": ["Pop", "R&B", "Soul"]
+  },
+  {
+    "OnyaFigureName": "Leo",
+    "OnyaUserIcon": "assets/figure/12/figure_12_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/12/figure_12_img_1.webp",
+      "assets/figure/12/figure_12_img_2.webp",
+      "assets/figure/12/figure_12_img_3.webp",
+      "assets/figure/12/figure_12_img_4.webp"
+    ],
+    "OnyaShowMotto": "A voice artist fascinated by complex ideas and intellectual narratives. I enjoy exploring abstract concepts through creative storytelling and voice acting.",
+    "OnyaShowFollowNum": 4,
+    "OnyaShowLike": 7,
+    "OnyaShowSayhi": "Greetings! I'm Leo, a thinker who loves intellectual stories. Want to explore some fascinating concepts? Let's dive into thought-provoking tales!",
+    "OnyaLikeMusicStyleArray": ["Ambient", "Electronic", "Progressive"]
+  },
+  {
+    "OnyaFigureName": "Max",
+    "OnyaUserIcon": "assets/figure/13/figure_13_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/13/figure_13_img_1.webp",
+      "assets/figure/13/figure_13_img_2.webp",
+      "assets/figure/13/figure_13_img_3.webp",
+      "assets/figure/13/figure_13_img_4.webp"
+    ],
+    "OnyaShowMotto": "A narrator who values efficiency and clear structure in storytelling. I enjoy sharing organized narratives that inspire action and achievement through voice work.",
+    "OnyaShowFollowNum": 6,
+    "OnyaShowLike": 10,
+    "OnyaShowSayhi": "Hello! I'm Max, a focused storyteller who loves clear narratives. Ready for some well-organized adventures? Let's explore structured tales together!",
+    "OnyaLikeMusicStyleArray": ["Classical", "Jazz", "Blues"]
+  },
+  {
+    "OnyaFigureName": "Noah",
+    "OnyaUserIcon": "assets/figure/14/figure_14_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/14/figure_14_img_1.webp",
+      "assets/figure/14/figure_14_img_2.webp",
+      "assets/figure/14/figure_14_img_3.webp",
+      "assets/figure/14/figure_14_img_4.webp"
+    ],
+    "OnyaShowMotto": "A voice actor who finds beauty in artistic expression through stories. I love creating emotional narratives that touch the heart and inspire creativity via narration.",
+    "OnyaShowFollowNum": 7,
+    "OnyaShowLike": 13,
+    "OnyaShowSayhi": "Hey! I'm Noah, an artistic storyteller. I love beautiful, emotional narratives. Ready to explore something creative? Let's share inspiring stories!",
+    "OnyaLikeMusicStyleArray": ["Indie", "Acoustic", "Folk"]
+  },
+  {
+    "OnyaFigureName": "Owen",
+    "OnyaUserIcon": "assets/figure/15/figure_15_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/15/figure_15_img_1.webp",
+      "assets/figure/15/figure_15_img_2.webp",
+      "assets/figure/15/figure_15_img_3.webp",
+      "assets/figure/15/figure_15_img_4.webp"
+    ],
+    "OnyaShowMotto": "A narrator driven by vision and leadership in storytelling. I enjoy sharing ambitious narratives that inspire others to achieve their dreams through voice acting.",
+    "OnyaShowFollowNum": 9,
+    "OnyaShowLike": 15,
+    "OnyaShowSayhi": "Hello! I'm Owen, a visionary storyteller. Ready to explore ambitious narratives? Let's dive into inspiring tales that motivate and empower!",
+    "OnyaLikeMusicStyleArray": ["Rock", "Electronic", "Pop"]
+  },
+  {
+    "OnyaFigureName": "Parker",
+    "OnyaUserIcon": "assets/figure/16/figure_16_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/16/figure_16_img_1.webp",
+      "assets/figure/16/figure_16_img_2.webp",
+      "assets/figure/16/figure_16_img_3.webp",
+      "assets/figure/16/figure_16_img_4.webp"
+    ],
+    "OnyaShowMotto": "A storyteller who brings enthusiasm and creativity to every narrative. I love exploring possibilities and sharing stories full of wonder and excitement through voice work.",
+    "OnyaShowFollowNum": 8,
+    "OnyaShowLike": 14,
+    "OnyaShowSayhi": "Hi there! I'm Parker, an enthusiastic storyteller! Ready for some amazing adventures? Let's explore creative narratives full of possibilities together!",
+    "OnyaLikeMusicStyleArray": ["Pop", "Indie", "Electronic"]
+  },
+  {
+    "OnyaFigureName": "Quinn",
+    "OnyaUserIcon": "assets/figure/17/figure_17_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/17/figure_17_img_1.webp",
+      "assets/figure/17/figure_17_img_2.webp",
+      "assets/figure/17/figure_17_img_3.webp",
+      "assets/figure/17/figure_17_img_4.webp"
+    ],
+    "OnyaShowMotto": "A voice artist who finds meaning in deep, introspective stories. I enjoy sharing narratives that explore human nature and inspire personal growth through storytelling.",
+    "OnyaShowFollowNum": 6,
+    "OnyaShowLike": 11,
+    "OnyaShowSayhi": "Hello! I'm Quinn, a thoughtful storyteller who loves meaningful narratives. Ready to explore deep stories? Let's share something inspiring together!",
+    "OnyaLikeMusicStyleArray": ["Ambient", "Indie", "Acoustic"]
+  },
+  {
+    "OnyaFigureName": "Riley",
+    "OnyaUserIcon": "assets/figure/18/figure_18_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/18/figure_18_img_1.webp",
+      "assets/figure/18/figure_18_img_2.webp",
+      "assets/figure/18/figure_18_img_3.webp",
+      "assets/figure/18/figure_18_img_4.webp",
+      "assets/figure/18/figure_18_img_5.webp"
+    ],
+    "OnyaShowMotto": "A narrator who brings joy and spontaneity to storytelling. I love sharing vibrant tales that celebrate life's adventures and spontaneous moments through voice narration.",
+    "OnyaShowFollowNum": 9,
+    "OnyaShowLike": 15,
+    "OnyaShowSayhi": "Hey! I'm Riley, a fun-loving storyteller! Ready for some exciting adventures? Let's explore vibrant narratives full of energy and joy together!",
+    "OnyaLikeMusicStyleArray": ["Pop", "Dance", "Rock"]
+  },
+  {
+    "OnyaFigureName": "Sage",
+    "OnyaUserIcon": "assets/figure/19/figure_19_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/19/figure_19_img_1.webp",
+      "assets/figure/19/figure_19_img_2.webp",
+      "assets/figure/19/figure_19_img_3.webp",
+      "assets/figure/19/figure_19_img_4.webp"
+    ],
+    "OnyaShowMotto": "A voice actor who crafts strategic and intellectual narratives. I enjoy sharing well-thought stories that challenge perspectives and inspire critical thinking via storytelling.",
+    "OnyaShowFollowNum": 5,
+    "OnyaShowLike": 8,
+    "OnyaShowSayhi": "Greetings! I'm Sage, a strategic storyteller. I love intellectual narratives and well-crafted tales. Ready to explore thought-provoking stories together?",
+    "OnyaLikeMusicStyleArray": ["Classical", "Jazz", "Electronic"]
+  },
+  {
+    "OnyaFigureName": "Tyler",
+    "OnyaUserIcon": "assets/figure/20/figure_20_img_1.webp",
+    "OnyaShowPhotoArray": [
+      "assets/figure/20/figure_20_img_1.webp",
+      "assets/figure/20/figure_20_img_2.webp",
+      "assets/figure/20/figure_20_img_3.webp",
+      "assets/figure/20/figure_20_img_4.webp"
+    ],
+    "OnyaShowMotto": "A narrator passionate about inspiring others through meaningful stories. I love sharing narratives that connect hearts and motivate positive change through voice acting.",
+    "OnyaShowFollowNum": 7,
+    "OnyaShowLike": 12,
+    "OnyaShowSayhi": "Hi friend! I'm Tyler, a passionate storyteller who loves inspiring narratives. Ready to explore meaningful stories? Let's share something wonderful together!",
+    "OnyaLikeMusicStyleArray": ["Soul", "R&B", "Pop"]
+  }
+]
+
