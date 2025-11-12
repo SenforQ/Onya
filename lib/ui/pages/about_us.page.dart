@@ -9,7 +9,7 @@ class AboutUsPage extends StatefulWidget {
 }
 
 class _AboutUsPageState extends State<AboutUsPage> {
-  String _appName = 'Onya';
+  String _appName = 'Nyme';
   String _version = '1.0.0';
   String _buildNumber = '1';
 

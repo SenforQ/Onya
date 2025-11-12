@@ -242,16 +242,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: const Text(
-                        'Find Your\nExclusive Music\nBuddy!',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          height: 1.2,
-                        ),
-                      ),
+           
                     ),
                   ),
                 ),
