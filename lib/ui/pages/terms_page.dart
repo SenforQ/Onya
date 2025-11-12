@@ -16,7 +16,7 @@ class _TermsPageState extends State<TermsPage> {
     super.initState();
     _webViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(Uri.parse('https://www.privacypolicies.com/live/e57e013d-3862-4520-b979-c10d24ae959c'));
+      ..loadRequest(Uri.parse('https://www.privacypolicies.com/live/947fd937-8e9a-46d7-ac5f-76cf589fc12f'));
   }
 
   @override
