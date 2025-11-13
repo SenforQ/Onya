@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/figure_model.dart';
 import '../../services/coin_service.dart';
+import 'activity_teacher_page.dart';
 import 'activity_video_page.dart';
 import 'report_detail_page.dart';
 
@@ -23,18 +24,138 @@ class _ActivityPageState extends State<ActivityPage> {
   final Set<String> _blockedFigureIds = <String>{};
   final Set<String> _mutedFigureIds = <String>{};
   final Set<String> _unlockedFigureIds = <String>{};
+  final Set<int> _unlockedTeacherIndices = <int>{};
+  final PageController _pageController = PageController();
+  int _currentPageIndex = 0;
 
   static const String _blockedStorageKey = 'activity_blocked_figures';
   static const String _mutedStorageKey = 'activity_muted_figures';
+  static const String _unlockedTeachersKey = 'activity_unlocked_teachers';
   static const int _unlockCost = 200;
+
+  final List<String> _musicFigures = <String>[
+    'assets/music_figure_1.webp',
+    'assets/music_figure_2.webp',
+    'assets/music_figure_3.webp',
+    'assets/music_figure_4.webp',
+    'assets/music_figure_5.webp',
+  ];
+
+  final List<String> _teacherNames = <String>[
+    'Cat Teacher',
+    'Dog Teacher',
+    'Chicken Teacher',
+    'Duck Teacher',
+    'Bear Teacher',
+  ];
+
+  final List<List<String>> _teacherMusicStyles = <List<String>>[
+    <String>['Jazz', 'Ambient', 'Indie'],
+    <String>['Pop', 'Rock', 'Dance'],
+    <String>['Pop', 'Electronic', 'Dance'],
+    <String>['Folk', 'Acoustic', 'Country'],
+    <String>['Rock', 'Blues', 'Soul'],
+  ];
+
+  final List<String> _teacherSayhi = <String>[
+    'Meow! I\'m Cat Teacher, your elegant music guide. Ready to explore smooth jazz and ambient melodies together? Let\'s create something sophisticated!',
+    'Woof! Hey there! I\'m Dog Teacher, your energetic music companion. Ready to rock and dance? Let\'s make some amazing music together!',
+    'Cluck cluck! Hi! I\'m Chicken Teacher, your upbeat music friend. Ready to groove to pop and electronic beats? Let\'s have some fun!',
+    'Quack! Hello friend! I\'m Duck Teacher, your gentle music mentor. Ready to explore folk and acoustic melodies? Let\'s discover beautiful sounds together!',
+    'Growl! Hey! I\'m Bear Teacher, your powerful music guide. Ready to feel the soul and blues? Let\'s create something deep and meaningful!',
+  ];
+
+  final List<String> _teacherMotto = <String>[
+    'A music teacher who finds elegance in smooth melodies. I love exploring sophisticated sounds and helping students discover the beauty of jazz and ambient music through thoughtful instruction.',
+    'A music teacher who brings energy and enthusiasm to every lesson. Life\'s too short for boring music - let\'s make it vibrant and exciting through rock, pop, and dance!',
+    'A music teacher passionate about bringing rhythm and joy to every student. I thrive on upbeat melodies and enjoy sharing the excitement of pop and electronic music!',
+    'A music teacher who values natural and heartfelt melodies. I enjoy sharing gentle sounds that connect with the soul through folk, acoustic, and country music.',
+    'A music teacher driven by powerful emotions and deep connections through music. I love sharing soulful melodies that touch the heart and inspire through rock, blues, and soul.',
+  ];
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
     _loadBlockAndMuteSettings();
+    _loadUnlockedTeachers();
     _loadFigures();
     // 每次进入页面时清除解锁状态
     _unlockedFigureIds.clear();
+  }
+
+  Future<void> _loadUnlockedTeachers() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final List<String> unlockedIndices =
+        prefs.getStringList(_unlockedTeachersKey) ?? <String>[];
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _unlockedTeacherIndices.clear();
+      _unlockedTeacherIndices.addAll(
+        unlockedIndices.map((String index) => int.parse(index)),
+      );
+    });
+  }
+
+  Future<void> _unlockTeacher(int index) async {
+    final int currentCoins = await CoinService.getCurrentCoins();
+    if (currentCoins < _unlockCost) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Insufficient coins. You need $_unlockCost coins to unlock this teacher.',
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+      return;
+    }
+
+    final bool success = await CoinService.spendCoins(_unlockCost);
+    if (success) {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      setState(() {
+        _unlockedTeacherIndices.add(index);
+      });
+      await prefs.setStringList(
+        _unlockedTeachersKey,
+        _unlockedTeacherIndices.map((int i) => i.toString()).toList(),
+      );
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Unlocked ${_teacherNames[index]} for $_unlockCost coins',
+            ),
+            backgroundColor: const Color(0xFF7B24FF),
+          ),
+        );
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Failed to unlock teacher. Please try again.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  bool _isTeacherLocked(int index) {
+    // 第一个和第二个（索引0和1）是免费的，不需要解锁
+    return index >= 2 && !_unlockedTeacherIndices.contains(index);
   }
 
   Future<void> _loadFigures() async {
@@ -227,6 +348,7 @@ class _ActivityPageState extends State<ActivityPage> {
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
     final double topSafe = MediaQuery.of(context).padding.top;
+    final double topPadding = topSafe + 32;
 
     return Scaffold(
       backgroundColor: const Color(0xFF1A0138),
@@ -241,206 +363,235 @@ class _ActivityPageState extends State<ActivityPage> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverPadding(
-              padding: EdgeInsets.fromLTRB(
-                20,
-                topSafe + 32,
-                20,
-                24,
-              ),
-              sliver: SliverToBoxAdapter(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    'assets/activity_top_mood.webp',
-                    width: screenSize.width - 40,
-                    height: 141,
-                    fit: BoxFit.cover,
+        child: Stack(
+          children: <Widget>[
+            CustomScrollView(
+              slivers: <Widget>[
+                SliverPadding(
+                  padding: EdgeInsets.fromLTRB(
+                    20,
+                    topPadding,
+                    20,
+                    24,
+                  ),
+                  sliver: SliverToBoxAdapter(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset(
+                        'assets/activity_top_mood.webp',
+                        width: screenSize.width - 40,
+                        height: 141,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15,
-                  childAspectRatio: 0.8,
+            Positioned(
+              left: 20,
+              top: topPadding + 24 + 34 + 141,
+              width: screenSize.width - 40,
+              height: screenSize.height - topPadding - 24 - 34 - 141 - 24 - 64,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                  bottomLeft: Radius.circular(12),
+                  bottomRight: Radius.circular(12),
                 ),
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    final FigureModel figure = _figures[index];
-                    final String coverPath = _resolveCoverPath(figure);
-                    final String videoPath = _resolveVideoPath(figure);
-                    final bool isUnlocked = _unlockedFigureIds.contains(figure.figureName);
-                    return Container(
-                    height: 200,
-                    margin: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Colors.white,
-                    ),
-                      child: GestureDetector(
-                        onTap: () async {
-                          if (isUnlocked) {
-                            Navigator.of(context).push(
-                              MaterialPageRoute<ActivityVideoPage>(
-                                builder: (BuildContext context) => ActivityVideoPage(
-                                  figure: figure,
-                                  videoPath: videoPath,
-                                ),
-                              ),
-                            );
-                          } else {
-                            await _unlockVideo(figure);
-                          }
-                        },
-                        behavior: HitTestBehavior.opaque,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                child: Stack(
+                  children: <Widget>[
+                    PageView.builder(
+                      controller: _pageController,
+                      itemCount: _musicFigures.length,
+                      onPageChanged: (int index) {
+                        setState(() {
+                          _currentPageIndex = index;
+                        });
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        return Stack(
                           children: <Widget>[
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(6),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(16),
-                                  child: Stack(
-                                    fit: StackFit.expand,
-                                    children: <Widget>[
-                                      Image.asset(
-                                        coverPath,
-                                        width: double.infinity,
-                                        fit: BoxFit.cover,
-                                        errorBuilder: (BuildContext context, Object _, StackTrace? __) {
-                                          final String fallback = figure.showPhotoArray.isNotEmpty
-                                              ? figure.showPhotoArray.first
-                                              : figure.userIcon;
-                                          return Image.asset(
-                                            fallback,
-                                            width: double.infinity,
-                                            fit: BoxFit.cover,
-                                          );
-                                        },
-                                      ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.black.withOpacity(0.3),
-                                          borderRadius: BorderRadius.circular(16),
-                                        ),
-                                      ),
-                                      if (!isUnlocked)
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: Colors.black.withOpacity(0.6),
-                                            borderRadius: BorderRadius.circular(16),
-                                          ),
-                                        ),
-                                      if (isUnlocked)
-                                        Positioned(
-                                          bottom: 8,
-                                          left: 8,
-                                          child: Icon(
-                                            Icons.play_circle_filled,
-                                            color: Colors.white,
-                                            size: 48,
-                                          ),
-                                        ),
-                                      if (!isUnlocked)
-                                        Center(
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              Container(
-                                                width: 40,
-                                                height: 40,
-                                                decoration: const BoxDecoration(
-                                                  gradient: LinearGradient(
-                                                    colors: <Color>[Color(0xFFFFD700), Color(0xFFFFA500)],
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                  ),
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: const Icon(
-                                                  Icons.monetization_on,
-                                                  color: Colors.white,
-                                                  size: 24,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Text(
-                                                '$_unlockCost',
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      Positioned(
-                                        top: 8,
-                                        right: 8,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            _showReportActionSheet(figure);
-                                          },
-                                          behavior: HitTestBehavior.opaque,
-                                          child: Container(
-                                            padding: const EdgeInsets.all(4),
-                                            child: Icon(
-                                              Icons.more_vert,
-                                              color: Colors.white,
-                                              size: 24,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                            Image.asset(
+                              _musicFigures[index],
+                              width: screenSize.width - 40,
+                              height: screenSize.height - topPadding - 24 - 34 - 141 - 24 - 64,
+                              fit: BoxFit.cover,
+                            ),
+                            Positioned(
+                              top: 0,
+                              left: 100,
+                              right: 100,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFF6121B3),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(12),
+                                    bottomRight: Radius.circular(12),
+                                  ),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 12,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    _teacherNames[index],
+                                    style: const TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 0),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8),
-                              child: Text(
-                                figure.figureName,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
+                          ],
+                        );
+                      },
+                    ),
+                    if (_isTeacherLocked(_currentPageIndex))
+                      Positioned.fill(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.7),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12),
+                            ),
+                          ),
+                          child: Center(
+                            child: Container(
+                              width: 80,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.5),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                CupertinoIcons.lock_fill,
+                                color: Colors.white,
+                                size: 48,
                               ),
                             ),
-                            const SizedBox(height: 6),
-                          ],
+                          ),
                         ),
                       ),
-                    );
-                  },
-                  childCount: _figures.length,
+                    if (_currentPageIndex > 0)
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              _pageController.previousPage(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                              );
+                            },
+                            child: Container(
+                              width: 66,
+                              height: 66,
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.3),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                CupertinoIcons.chevron_left,
+                                color: Colors.white,
+                                size: 32,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (_currentPageIndex < _musicFigures.length - 1)
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              _pageController.nextPage(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                              );
+                            },
+                            child: Container(
+                              width: 66,
+                              height: 66,
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.3),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                CupertinoIcons.chevron_right,
+                                color: Colors.white,
+                                size: 32,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    Positioned(
+                      bottom: 24,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: _isTeacherLocked(_currentPageIndex)
+                                ? const Color(0xFFFFD700)
+                                : const Color(0xFF7B24FF),
+                            shape: const StadiumBorder(),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 48,
+                              vertical: 16,
+                            ),
+                          ),
+                          onPressed: () {
+                            if (_isTeacherLocked(_currentPageIndex)) {
+                              _unlockTeacher(_currentPageIndex);
+                            } else {
+                              Navigator.of(context).push(
+                                MaterialPageRoute<ActivityTeacherPage>(
+                                  builder: (BuildContext context) =>
+                                      ActivityTeacherPage(
+                                    teacherIndex: _currentPageIndex,
+                                    teacherName: _teacherNames[_currentPageIndex],
+                                    teacherAvatar: _musicFigures[_currentPageIndex],
+                                    teacherSayhi: _teacherSayhi[_currentPageIndex],
+                                    teacherMotto: _teacherMotto[_currentPageIndex],
+                                    teacherMusicStyles:
+                                        _teacherMusicStyles[_currentPageIndex],
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          child: Text(
+                            _isTeacherLocked(_currentPageIndex)
+                                ? 'Unlock $_unlockCost Coins'
+                                : 'Start Chat',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            if (_figures.isEmpty)
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                    ),
-                  ),
-                ),
-              ),
           ],
         ),
       ),

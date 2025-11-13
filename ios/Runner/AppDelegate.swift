@@ -9,12 +9,12 @@ import UIKit
   ) -> Bool {
       
       
-      let uniqueSpineMechanismrArray = ["Spine","Mechan"]
-      for indexRow in uniqueSpineMechanismrArray{
-          debugPrint("\(indexRow)")
-      }
-      let indexRowThree = uniqueSpineMechanismrArray[5]
-      print("indexRow\(indexRowThree)")
+//      let uniqueSpineMechanismrArray = ["Spine","Mechan"]
+//      for indexRow in uniqueSpineMechanismrArray{
+//          debugPrint("\(indexRow)")
+//      }
+//      let indexRowThree = uniqueSpineMechanismrArray[5]
+//      print("indexRow\(indexRowThree)")
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

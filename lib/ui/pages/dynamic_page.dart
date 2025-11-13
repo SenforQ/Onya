@@ -306,7 +306,7 @@ class _DynamicPageState extends State<DynamicPage> {
     final double topPadding = MediaQuery.of(context).padding.top;
     final double tableViewHeight =
         screenSize.height - topPadding - 24 - 34 - 24 - 64;
-    final double tableViewY = 48 + 34;
+    final double tableViewY = topPadding + 24 + 34;
 
     return Scaffold(
       backgroundColor: const Color(0xFF1A0138),

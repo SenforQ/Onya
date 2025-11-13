@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../services/coin_service.dart';
-import 'ai_chat_page.dart';
+import 'home_study_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,156 +10,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static const int _requiredCoins = 100;
-
-  Future<void> _handleStartExercising() async {
-    // 显示二次确认对话框
-    final bool? confirmed = await showDialog<bool>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: const Color(0xFF1C0325),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          title: const Row(
-            children: <Widget>[
-              Icon(
-                Icons.monetization_on,
-                color: Color(0xFFFFD700),
-                size: 24,
-              ),
-              SizedBox(width: 8),
-              Text(
-                'Confirm Payment',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Text(
-                'Start music teacher session?',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: <Widget>[
-                  Container(
-                    width: 24,
-                    height: 24,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: <Color>[Color(0xFFFFD700), Color(0xFFFFA500)],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.monetization_on,
-                      color: Colors.white,
-                      size: 16,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      '$_requiredCoins coins will be deducted',
-                      style: const TextStyle(
-                        color: Color(0xFF68B6FF),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-              child: const Text(
-                'Cancel',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(true);
-              },
-              child: const Text(
-                'Confirm',
-                style: TextStyle(
-                  color: Color(0xFF68B6FF),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ],
-        );
-      },
+  void _handleStartExercising() {
+    Navigator.of(context).push(
+      MaterialPageRoute<HomeStudyPage>(
+        builder: (BuildContext context) => const HomeStudyPage(),
+      ),
     );
-
-    if (confirmed != true) {
-      return;
-    }
-
-    // 检查余额
-    final int currentCoins = await CoinService.getCurrentCoins();
-    if (currentCoins < _requiredCoins) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Insufficient coins. You need $_requiredCoins coins to start the music teacher session.',
-            ),
-            backgroundColor: Colors.red,
-            duration: const Duration(seconds: 3),
-          ),
-        );
-      }
-      return;
-    }
-
-    // 扣除金币
-    final bool success = await CoinService.spendCoins(_requiredCoins);
-    if (!success) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Failed to deduct coins. Please try again.'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-      return;
-    }
-
-    // 导航到AI聊天页面
-    if (mounted) {
-      Navigator.of(context).push(
-        MaterialPageRoute<AiChatPage>(
-          builder: (BuildContext context) => const AiChatPage(),
-        ),
-      );
-    }
   }
 
   @override
@@ -241,42 +96,11 @@ class _HomePageState extends State<HomePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     const Text(
-                                      'Each use of the music teacher requires 100 coins.',
+                                      'Some music theory knowledge requires spending Coins to unlock',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,
                                       ),
-                                    ),
-                                    const SizedBox(height: 16),
-                                    Row(
-                                      children: <Widget>[
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          decoration: const BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: <Color>[Color(0xFFFFD700), Color(0xFFFFA500)],
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                            ),
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: const Icon(
-                                            Icons.monetization_on,
-                                            color: Colors.white,
-                                            size: 16,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        const Text(
-                                          '100 coins per session',
-                                          style: TextStyle(
-                                            color: Color(0xFF68B6FF),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
                                     ),
                                   ],
                                 ),
@@ -340,6 +164,10 @@ class _HomePageState extends State<HomePage> {
                                   foregroundColor: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25),
+                                    side: const BorderSide(
+                                      color: Color(0xFF4E096A),
+                                      width: 2,
+                                    ),
                                   ),
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 32,
@@ -350,26 +178,9 @@ class _HomePageState extends State<HomePage> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    Container(
-                                      width: 24,
-                                      height: 24,
-                                      decoration: const BoxDecoration(
-                                        gradient: LinearGradient(
-                                          colors: <Color>[Color(0xFFFFD700), Color(0xFFFFA500)],
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                        ),
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: const Icon(
-                                        Icons.monetization_on,
-                                        color: Colors.white,
-                                        size: 16,
-                                      ),
-                                    ),
                                     const SizedBox(width: 8),
                                     const Text(
-                                      'Start exercising',
+                                      'Learn Music Theory',
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,
@@ -377,14 +188,6 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     const SizedBox(width: 8),
-                                    const Text(
-                                      '100 coins',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),
