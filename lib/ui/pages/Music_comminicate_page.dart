@@ -7,23 +7,17 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/figure_model.dart';
-import 'dynamic_activity_page.dart';
-import 'dynamic_comment_page.dart';
-import 'dynamic_msg_page.dart';
-import 'dynamic_notification_page.dart';
 import 'figure_detail_page.dart';
-import 'figure_video_detail_page.dart';
-import 'Music_comminicate_page.dart';
 import 'report_detail_page.dart';
 
-class DynamicPage extends StatefulWidget {
-  const DynamicPage({super.key});
+class MusicComminicatePage extends StatefulWidget {
+  const MusicComminicatePage({super.key});
 
   @override
-  State<DynamicPage> createState() => _DynamicPageState();
+  State<MusicComminicatePage> createState() => _MusicComminicatePageState();
 }
 
-class _DynamicPageState extends State<DynamicPage> {
+class _MusicComminicatePageState extends State<MusicComminicatePage> {
   List<FigureModel> _allFigures = <FigureModel>[];
   List<FigureModel> _figures = <FigureModel>[];
   final Set<String> _likedFigureIds = <String>{};
@@ -335,14 +329,6 @@ class _DynamicPageState extends State<DynamicPage> {
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
     final double topPadding = MediaQuery.of(context).padding.top;
-    final double musicBuddyWidth = screenSize.width - 40;
-    final double musicBuddyHeight = musicBuddyWidth * 0.43;
-    final double buttonWidth = (screenSize.width - 40 - 12 * 3) / 4;
-    final double buttonHeight = buttonWidth;
-    final double buttonsY = topPadding + 24 + 34 + musicBuddyHeight + 12;
-    final double tableViewHeight =
-        screenSize.height - topPadding - 24 - 34 - musicBuddyHeight - 12 - buttonHeight - 24 - 64 - 12;
-    final double tableViewY = topPadding + 24 + 34 + musicBuddyHeight + 12 + buttonHeight + 12;
 
     return Scaffold(
       backgroundColor: const Color(0xFF1A0138),
@@ -362,204 +348,54 @@ class _DynamicPageState extends State<DynamicPage> {
           Positioned(
             top: topPadding + 24,
             left: 20,
-            child: Image.asset(
-              'assets/dynamic_title.webp',
-              width: 147,
-              height: 34,
-              fit: BoxFit.contain,
-            ),
-          ),
-          Positioned(
-            top: topPadding + 24 + 34,
-            left: 20,
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute<MusicComminicatePage>(
-                    builder: (BuildContext context) =>
-                        const MusicComminicatePage(),
-                  ),
-                );
+                Navigator.of(context).pop();
               },
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  'assets/MusicBuddy.webp',
-                  width: musicBuddyWidth,
-                  height: musicBuddyHeight,
-                  fit: BoxFit.cover,
+              child: Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.3),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  CupertinoIcons.arrow_left,
+                  color: Colors.white,
+                  size: 24,
                 ),
               ),
             ),
           ),
           Positioned(
-            top: buttonsY,
-            left: 20,
-            child: Row(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute<DynamicNotificationPage>(
-                        builder: (BuildContext context) =>
-                            const DynamicNotificationPage(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: buttonWidth,
-                    height: buttonHeight,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1,
-                      ),
-                      boxShadow: const <BoxShadow>[
-                        BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 2,
-                          offset: Offset(2, 2),
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(18),
-                      child: Image.asset(
-                        'assets/music_not.webp',
-                        width: buttonWidth,
-                        height: buttonHeight,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+            top: topPadding + 24,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Text(
+                'Music Comminicate',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
-                const SizedBox(width: 12),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute<DynamicMsgPage>(
-                        builder: (BuildContext context) =>
-                            const DynamicMsgPage(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: buttonWidth,
-                    height: buttonHeight,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1,
-                      ),
-                      boxShadow: const <BoxShadow>[
-                        BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 2,
-                          offset: Offset(2, 2),
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(18),
-                      child: Image.asset(
-                        'assets/music_msg.webp',
-                        width: buttonWidth,
-                        height: buttonHeight,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute<DynamicCommentPage>(
-                        builder: (BuildContext context) =>
-                            const DynamicCommentPage(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: buttonWidth,
-                    height: buttonHeight,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1,
-                      ),
-                      boxShadow: const <BoxShadow>[
-                        BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 2,
-                          offset: Offset(2, 2),
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(18),
-                      child: Image.asset(
-                        'assets/music_comment.webp',
-                        width: buttonWidth,
-                        height: buttonHeight,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute<DynamicActivityPage>(
-                        builder: (BuildContext context) =>
-                            const DynamicActivityPage(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: buttonWidth,
-                    height: buttonHeight,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1,
-                      ),
-                      boxShadow: const <BoxShadow>[
-                        BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 2,
-                          offset: Offset(2, 2),
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(18),
-                      child: Image.asset(
-                        'assets/music_activity.webp',
-                        width: buttonWidth,
-                        height: buttonHeight,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
           Positioned(
-            top: tableViewY,
+            top: topPadding + 24,
             left: 0,
             right: 0,
-            child: SizedBox(
-              width: screenSize.width,
-              height: tableViewHeight,
+            bottom: 0,
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 44 + 24,
+                left: 20,
+                right: 20,
+                bottom: 24,
+              ),
               child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 12),
                 itemCount: _figures.length,
                 itemBuilder: (BuildContext context, int index) {
                   return _buildCell(
@@ -577,162 +413,160 @@ class _DynamicPageState extends State<DynamicPage> {
     );
   }
 
-  String _resolveVideoCoverPath(FigureModel figure) {
-    final String iconPath = figure.userIcon;
-    final int lastSlash = iconPath.lastIndexOf('/');
-    if (lastSlash == -1) {
-      return iconPath;
-    }
-    final String directory = iconPath.substring(0, lastSlash);
-    final RegExp idReg = RegExp(r'figure_(\d+)_');
-    final Match? match = idReg.firstMatch(iconPath);
-    final String id =
-        match != null ? match.group(1)! : directory.split('/').last;
-    return '$directory/figure_${id}_video_cover.jpg';
-  }
-
-  String _resolveVideoPath(FigureModel figure) {
-    final String iconPath = figure.userIcon;
-    final int lastSlash = iconPath.lastIndexOf('/');
-    if (lastSlash == -1) {
-      return iconPath;
-    }
-    final String directory = iconPath.substring(0, lastSlash);
-    final RegExp idReg = RegExp(r'figure_(\d+)_');
-    final Match? match = idReg.firstMatch(iconPath);
-    final String id =
-        match != null ? match.group(1)! : directory.split('/').last;
-    return '$directory/figure_${id}_video.mp4';
-  }
-
   Widget _buildCell(
     BuildContext context,
     FigureModel figure,
     double cellWidth,
     int index,
   ) {
-    final String videoCoverPath = _resolveVideoCoverPath(figure);
-    final String videoPath = _resolveVideoPath(figure);
-    final double videoHeight = cellWidth * 0.75;
+    final bool isLiked = _likedFigureIds.contains(figure.figureName);
 
-    return Container(
-      width: cellWidth,
-      height: videoHeight + 44,
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<FigureVideoDetailPage>(
-                  builder: (BuildContext context) => FigureVideoDetailPage(
-                    figure: figure,
-                    videoPath: videoPath,
-                  ),
-                ),
-              );
-            },
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-              child: SizedBox(
-                width: cellWidth,
-                height: videoHeight,
-                child: Stack(
-                  children: <Widget>[
-                    Image.asset(
-                      videoCoverPath,
-                      width: cellWidth,
-                      height: videoHeight,
-                      fit: BoxFit.cover,
-                      errorBuilder: (BuildContext context, Object _, StackTrace? __) {
-                        final String fallback = figure.showPhotoArray.isNotEmpty
-                            ? figure.showPhotoArray.first
-                            : figure.userIcon;
-                        return Image.asset(
-                          fallback,
-                          width: cellWidth,
-                          height: videoHeight,
-                          fit: BoxFit.cover,
-                        );
-                      },
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute<FigureDetailPage>(
+            builder: (BuildContext context) => FigureDetailPage(figure: figure),
+          ),
+        );
+      },
+      behavior: HitTestBehavior.translucent,
+      child: Container(
+        width: cellWidth,
+        height: 426,
+        margin: const EdgeInsets.only(bottom: 16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: SizedBox(
+                      height: 320,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          GestureDetector(
+                            onTap: () {
+                              _toggleLike(figure);
+                            },
+                            behavior: HitTestBehavior.opaque,
+                            child: Image.asset(
+                              isLiked
+                                  ? 'assets/dynamic_like_pre.webp'
+                                  : 'assets/dynamic_like_nor.webp',
+                              width: 32,
+                              height: 32,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          GestureDetector(
+                            onTap: () {
+                              _showCommentDialog(figure);
+                            },
+                            behavior: HitTestBehavior.opaque,
+                            child: Image.asset(
+                              'assets/dynamic_comment.webp',
+                              width: 32,
+                              height: 32,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          GestureDetector(
+                            onTap: () {
+                              _showReportActionSheet(figure);
+                            },
+                            behavior: HitTestBehavior.opaque,
+                            child: Image.asset(
+                              'assets/dynamic_report.webp',
+                              width: 32,
+                              height: 32,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                        ],
+                      ),
                     ),
-                    Positioned.fill(
-                      child: Container(
+                  ),
+                  const SizedBox(width: 24),
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        figure.showPhotoArray.isNotEmpty
+                            ? figure.showPhotoArray[0]
+                            : figure.userIcon,
+                        height: 320,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        width: 44,
+                        height: 44,
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                      ),
-                    ),
-                    Positioned.fill(
-                      child: Center(
-                        child: Container(
-                          width: 64,
-                          height: 64,
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.3),
-                            shape: BoxShape.circle,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: const Color(0xFFFF2ED0),
+                            width: 2,
                           ),
-                          child: const Icon(
-                            CupertinoIcons.play_circle_fill,
-                            color: Colors.white,
-                            size: 64,
+                        ),
+                        child: ClipOval(
+                          child: Image.asset(
+                            figure.userIcon,
+                            width: 44,
+                            height: 44,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Container(
-            width: cellWidth,
-            height: 44,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    figure.showMotto,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF111111),
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                      const SizedBox(height: 7),
+                      Text(
+                        figure.figureName,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF666666),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    _showReportActionSheet(figure);
-                  },
-                  behavior: HitTestBehavior.opaque,
-                  child: Image.asset(
-                    'assets/dynamic_report.webp',
-                    width: 24,
-                    height: 24,
-                    fit: BoxFit.contain,
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      figure.showMotto,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xFF111111),
+                      ),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
